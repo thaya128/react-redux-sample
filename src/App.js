@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Link } from 'react-router-dom';
+import Ranking from './components/Ranking'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <ul>
+          <li><Link to="/all">all category</Link></li>
+          <li><Link to="/category/2502">pc etc...</Link></li>
+          <li><Link to="/category/10002">book etc...</Link></li>
+        </ul>
+        <Route path="/all" component={Ranking} />
+        <Route
+          path="/category/:id"
+          render={
+            ({ match }) => <Ranking categoryId={match.params.id}/>
+          }
+        />
       </div>
     );
   }
